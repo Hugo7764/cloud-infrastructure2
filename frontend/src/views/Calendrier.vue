@@ -1,32 +1,55 @@
 <template>
-    <div class="p-10">
-        <h1 class="text-3xl font-bold text-gray-800">Calendrier de la ligue</h1>
-        <button v-if="isAdmin" @click="$router.push('/ajouter-match')" 
-            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Ajouter un match
-        </button>
+    <div class="p-4">
+        <div class="mb-2 p-1 space-x-3">
+            <button v-if="isAdmin" @click="$router.push('/ajouter-match')"
+                class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                Ajouter un match
+            </button>
+            <button v-if="isAdmin" @click="generateCalendrier"
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Générer le calendrier
+            </button>
+        </div>
 
-        <table class="mt-6 w-full border-collapse border border-gray-300">
-            <thead class="bg-gray-800 text-white">
+        <table>
+            <thead>
                 <tr>
-                    <th class="p-2">Date</th>
-                    <th class="p-2">Domicile</th>
-                    <th class="p-2">Score</th>
-                    <th class="p-2">Extérieur</th>
+                    <th>Date</th>
+                    <th>Domicile</th>
+                    <th>Score</th>
+                    <th>Extérieur</th>
+                    <th v-if="isAdmin">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="match in matchs" :key="match.id" class="border-b border-gray-300">
-                    <td class="p-2">{{ match.date }}</td>
-                    <td class="p-2">{{ equipesMap[match.equipe1_id] || "..." }}</td>
-                    <td class="p-2">{{ match.score_equipe1 }} - {{ match.score_equipe2 }}</td>
-                    <td class="p-2">{{ equipesMap[match.equipe2_id] || "..." }}</td>
+                <tr v-for="match in matchs" :key="match.id">
+                    <td class="p-1">{{ match.date }}</td>
+                    <td class="p-1">
+                        <strong v-if="match.score_equipe1 > match.score_equipe2">{{ equipesMap[match.equipe1_id] ||
+                            "..." }}</strong>
+                        <span v-else>{{ equipesMap[match.equipe1_id] || "..." }}</span>
+                    </td>
+                    <td class="p-1">{{ match.score_equipe1 }} - {{ match.score_equipe2 }}</td>
+                    <td class="p-1">
+                        <strong v-if="match.score_equipe2 > match.score_equipe1">{{ equipesMap[match.equipe2_id] ||
+                            "..." }}</strong>
+                        <span v-else>{{ equipesMap[match.equipe2_id] || "..." }}</span>
+                    </td>
+                    <td v-if="isAdmin" class="p-1 space-x-3">
+                        <button @click="editMatch(match.id)"
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Edit
+                        </button>
+                        <button @click="deleteMatch(match.id)"
+                            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
-
 
 <script>
 import axios from 'axios';

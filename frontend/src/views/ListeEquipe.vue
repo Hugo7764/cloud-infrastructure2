@@ -1,26 +1,32 @@
 <template>
-    <div>
-        <h1>Liste des Équipes</h1>
-        <button @click="$router.push('/ajouter-equipe')">Ajouter une équipe</button>
-        <table>
+    <div class="p-4">
+        <button @click="$router.push('/ajouter-equipe')" class="mb-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+            Ajouter une équipe
+        </button>
+        <table class="w-full border-collapse">
             <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Actions</th>
+                <tr class="bg-gray-200">
+                    <th class="p-2 text-left">Nom</th>
+                    <th class="p-2 text-left">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="equipe in equipes" :key="equipe.id">
-                    <td>{{ equipe.nom }}</td>
-                    <td>
-                        <button @click="editEquipe(equipe)">Modifier</button>
-                        <button @click="deleteEquipe(equipe.id)">Supprimer</button>
+                <tr v-for="equipe in equipes" :key="equipe.id" class="border-b">
+                    <td class="p-2">{{ equipe.nom }}</td>
+                    <td class="p-2 space-x-3">
+                        <button @click="editEquipe(equipe)" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Modifier
+                        </button>
+                        <button @click="deleteEquipe(equipe.id)" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                            Supprimer
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';

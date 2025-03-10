@@ -30,7 +30,6 @@ export default {
             axios.post("http://localhost:5000/api/equipes", {
                 nom: this.nom
             }).then(() => {
-                alert("Équipe ajoutée avec succès");
                 this.$router.push("/liste-equipes");
             }).catch(error => {
                 alert("Erreur lors de l'ajout de l'équipe");

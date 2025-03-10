@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Classement</h1>
         <table>
             <thead>
                 <tr>

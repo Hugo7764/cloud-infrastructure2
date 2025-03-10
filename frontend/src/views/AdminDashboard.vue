@@ -1,17 +1,26 @@
 <template>
-    <div class="p-10">
-        <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
-        <div class="mt-6 flex gap-4">
-            <button @click="$router.push('/liste-equipes')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                Liste des équipes
-            </button>
-            <button @click="generateTestData" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
-                Générer des données de test
-            </button>
+    <div class="relative w-full h-screen flex items-center justify-center text-white">
+        <div class="absolute inset-0 bg-cover bg-center" 
+            style="background-image: url('/fff.jpg'); filter: brightness(0.5);">
+        </div>
+
+        <div class="relative bg-black bg-opacity-50 p-8 rounded-lg shadow-lg text-center w-1/2">
+            <h1 class="text-4xl font-bold text-white mb-6">Dashboard</h1>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button @click="$router.push('/liste-equipes')"
+                    class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+                    Liste des équipes
+                </button>
+                
+                <button @click="generateTestData"
+                    class="px-6 py-3 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-700 transition">
+                    Générer des données de test
+                </button>
+            </div>
         </div>
     </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -29,11 +38,3 @@ export default {
     }
 };
 </script>
-
-<style>
-button {
-    margin: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-</style>

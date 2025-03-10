@@ -58,10 +58,9 @@ export default {
                 equipe2_id: this.equipe2_id,
                 date: formattedDate
             }).then(() => {
-                alert("Match ajouté avec succès !");
                 this.$router.push("/calendrier");
             }).catch(error => {
-                alert("Erreur lors de l'ajout du match !");
+                alert("Erreur lors de l'ajout du match");
                 console.error(error);
             });
         }
