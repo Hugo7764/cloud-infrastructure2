@@ -5,6 +5,9 @@ from auth import auth_bp
 from database import engine, Base, SessionLocal
 from models import Utilisateur
 from werkzeug.security import generate_password_hash
+import time
+
+time.sleep(10)
 
 # Création de l'application Flask
 app = Flask(__name__)

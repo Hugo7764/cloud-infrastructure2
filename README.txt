@@ -18,6 +18,7 @@ REQUIS : Docker et Docker Compose installés sur votre machine
     - Annuler le processus (ctrl + C)
     - Entrer à nouveau "docker compose up"
 4. Entrer l'URL "localhost:8080" dans votre navigateur web
+5. Se connecter en administrateur (username: admin, mot de passe: 11)
 
 ### Technologies utilisées
 
